@@ -561,4 +561,4 @@ async def update_bank(user,change=0,mode = 'wallet'):
 
 
 
-bot.run('Nzk5MjQ3MjA2ODI5NjU0MDM2.YAAy9w.7bBriOXXPmy32lwwlNIbhvDJuh4')
+bot.run(str(token))
