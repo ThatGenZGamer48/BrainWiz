@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import random 
 import json
-from configtemplate import PREFIX, DEVELOPER_ID, DEVELOPER_NAME
+from configtemplate import PREFIX, DEVELOPER_ID, DEVELOPER_NAME, TOKEN
 import os
 import asyncio
 import datetime
@@ -10,7 +10,7 @@ import datetime
 
 # keep_alive.keep_alive()
 
-token = os.environ["TOKEN"]
+token = TOKEN
 
 intents = discord.Intents.default()
 intents.members = True
