@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import random 
 import json
-from configtemplate import PREFIX, DEVELOPER_ID, DEVELOPER_NAME, TOKEN
+from configtemplate import PREFIX, DEVELOPER_ID, DEVELOPER_NAME
 import os
 import asyncio
 import datetime
