@@ -9,4 +9,3 @@ blacklisted_users = []
 DISCORD_VERSION = discord.__version__
 BOT_VERSION = "2.5.1"
 PYTHON_VERSION = str(platform.python_version())
-TOKEN = "ODg4NzM4Mzg1NzQzNzQwOTQ4.YUXEHw.zz4tx5Jhd3ifruPQGiqRQPVyoO4"
