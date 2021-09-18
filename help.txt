@@ -1,0 +1,82 @@
+import discord
+from discord.ext import commands
+from configtemplate import PREFIX, DEVELOPER_ID, DEVELOPER_NAME
+
+class Help(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command(name='help', description='Gets help for the user')
+    async def help(self, ctx, *input):
+        prefix = PREFIX
+        version = '0.0.1'
+
+        owner = DEVELOPER_ID
+        owner_name = DEVELOPER_NAME
+
+        if not input:
+            try:
+                owner = ctx.guild.get_member(owner).mention
+
+            except AttributeError as e:
+                owner = owner
+
+            emb = discord.Embed(
+                title='Help for Commands and Modules',
+                description=f'Use {prefix}help <module> for help on a specific module!\n'
+            )
+
+            cog_desc = ''
+            for cog in self.bot.cogs:
+                cog_desc += f'`{cog}` {self.bot.cogs[cog].__doc__}\n'
+
+            emb.add_field(
+                name='Modules',
+                value=cog_desc,
+                inline=False
+            )
+
+            commands_desc = ''
+            for command in self.bot.walk_commands():
+                if not command.cog_name and not command.hidden:
+                    commands_desc += f'{command.name} - {command.help}\n'
+
+            if commands_desc:
+                emb.add_field(
+                    name='Module-less commands',
+                    value=commands_desc,
+                    inline=False
+                )
+
+            emb.add_field(
+                name='About Us',
+                value=f'Bot developed by {owner_name}, using Discord.py python library'
+            )
+
+        elif len(input) == 1:
+            for cog in self.bot.cogs:
+                if cog.lower() == input[0].lower():
+                    emb = discord.Embed(title=f'{cog} - Commands', description=self.bot.cogs[cog].__doc__,
+                                        color=discord.Color.green())
+                    
+                    for command in self.bot.get_cog(cog).get_commands():
+                        if not command.hidden:
+                            emb.add_field(name=f"`{prefix}{command.name}`", value=command.description, inline=False)
+                    break
+
+            else:
+                emb = discord.Embed(title='Invalid Command/Module specified',
+                description=f'{input[0]} command/module not found!')
+
+        elif len(input) > 1:
+            emb = discord.Embed(title='Too many commands/modules specified',
+            description=f'Request only one module at once please!')
+
+        else:
+            emb = discord.Embed(title='Error finding command/module',
+            description=f'If you continue to face errors please contact {owner_name}')
+
+        await ctx.send(embed=emb)
+
+def setup(bot):
+    bot.add_cog(Help(bot))

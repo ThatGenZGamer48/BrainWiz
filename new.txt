@@ -1,0 +1,6 @@
+NEW ECONOMY MODULE (NOT YET FUNCTIONAL)
+
+elif arg.lower() == 'economy':
+        botEmbed = discord.Embed(title='Economy', description='`balance`, `beg`, `withdraw`, `deposit`, `send`, `rob`, `slots`, `leaderboard`, `shop`, `buy`, `buy_this`, `sell`, `sell_this`', color=discord.Color.blue())
+        await ctx.send(embed=botEmbed)
+
