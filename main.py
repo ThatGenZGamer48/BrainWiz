@@ -10,7 +10,7 @@ import datetime
 
 # keep_alive.keep_alive()
 
-token = TOKEN
+token = os.getenv("TOKEN")
 
 intents = discord.Intents.default()
 intents.members = True
@@ -561,4 +561,4 @@ async def update_bank(user,change=0,mode = 'wallet'):
 
 
 
-bot.run("ODg4NzM4Mzg1NzQzNzQwOTQ4.YUXEHw.zz4tx5Jhd3ifruPQGiqRQPVyoO4")
+bot.run(str(token))
