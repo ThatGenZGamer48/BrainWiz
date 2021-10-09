@@ -10,7 +10,7 @@ import datetime
 
 # keep_alive.keep_alive()
 
-token = os.getenv("TOKEN")
+token = os.environ.get("TOKEN")
 
 intents = discord.Intents.default()
 intents.members = True
