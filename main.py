@@ -6,11 +6,14 @@ from configtemplate import PREFIX, DEVELOPER_ID, DEVELOPER_NAME
 import os
 import asyncio
 import datetime
+from dotenv import load_dotenv
 # import keep_alive
 
 # keep_alive.keep_alive()
 
-token = os.environ.get("TOKEN")
+load_dotenv()
+
+token = os.getenv("TOKEN")
 
 intents = discord.Intents.default()
 intents.members = True
@@ -561,4 +564,4 @@ async def update_bank(user,change=0,mode = 'wallet'):
 
 
 
-bot.run(str(token))
+bot.run(token)
